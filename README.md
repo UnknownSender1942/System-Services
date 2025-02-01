@@ -5,6 +5,10 @@ It includes tools for system monitoring, service management and tools to help yo
 
 ----
 
+![system](https://github.com/user-attachments/assets/86f8392c-354b-440e-bfb8-175747518b01)
+
+
+
 # Features
 
 - System information:
