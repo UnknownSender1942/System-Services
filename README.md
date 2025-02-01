@@ -42,4 +42,14 @@ It includes tools for system monitoring, service management and tools to help yo
 
 -----
 
+# Usage
+
+1. Clone the repository: `git clone https://github.com/UnknownSender1942/System-Services.git`
+
+2. Make the script executable: `chmod +x System.sh`
+
+3. Run the script: `./System.sh`
+
+-----
+
 
