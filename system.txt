@@ -1,0 +1,118 @@
+System Services
+---------------
+
+This script is designed to help you manager your system. 
+It includes tools for system monitoring, service management and tools to help you increase your systems security.
+
+
+The script allows you to : 
+--------------------------
+1. View system information.
+2. List system services and manage them.
+3. Check disk usage.
+4. Monitor your system.
+5. Check system logs.
+6. Enable firewall, audit your system and check for rootkits.
+7. Add, delete and list users on the system.
+8. Reboot and shutdown your system.
+
+
+How to use the script: 
+----------------------
+1. Make the script executable : chmod +x System.sh
+2. Run the script : ./System.sh
+
+
+	#!/bin/bash = this line tells the system the script needs to be run using the bash shell.
+	-----------------------------------------------------------------------------------------
+
+The script is organized into functions, each doing their own task. 
+Functions help make the script modular and reusable.
+
+
+	show_system_info = Display key system information. 
+	--------------------------------------------------	
+	hostname : Shows the system's hostname.
+	uptime -p : Shows the system's uptime.
+	dpkg --list | wc -l : Shows how many packages are installed on the system.
+	uname -r : Shows the kernel version.
+	lsb_release -d : Shows the operating system and version.
+
+
+	list_services = Lists all current running services on the system.
+	-----------------------------------------------------------------
+	systemctl list-units --type=service --state=running : Lists running services.
+	
+	
+	manage_services = Allows you to start, stop, or restart a service running on the system.
+	----------------------------------------------------------------------------------------
+	systemctl start : Starts a new service.
+	systemctl stop : Stops a service.
+	systemctl restart : Restarts a service.
+
+
+	monitor_disk_usage = Display the disk usage for filesystem. 
+	-----------------------------------------------------------
+	ncdu / : Shows disk usage in a easy to read and navigate format.
+
+	
+	monitor_system = Monitors CPU, RAM, Processes in real-time.
+	-----------------------------------------------------------
+	glances : Displays real-time system resource usage.
+
+
+	check_system_logs = Displays the last 10 error messages from the system logs.
+	-----------------------------------------------------------------------------
+	journalctl -p 3 -xb : Filters the logs to only show error messages.
+	tail -n 10 : Displays the last 10 lines of output.
+
+	
+	enable_ufw = Enables and configures the firewall (UFW).
+	-------------------------------------------------------
+	ufw enable : Enables UFW.
+	ufw status numbered verbose : Displays the UFW rules.
+
+	
+	run_lynis = Runs Lynis for an in depth security audit on the system.
+	-------------------------------------------------------------------
+	lynis audit system : Audits the system.
+
+
+	check_rootkits = Runs RKhunter to detect rootkits.
+	--------------------------------------------------
+	rkhunter --check --sk : Scans the system for rootkits without any user interaction.
+
+
+	User Management functions.
+	--------------------------
+	add_user : Adds a new user using adduser.
+	delete_user : Deletes a user using deluser.
+	list_users : Lists all system users using cut -d: f1 /etc/passwd.
+
+
+	System Booting functions.
+	--------------------------
+	reboot_system : Reboots the system using reboot.
+	shutdown_system : Shuts down the system using shutdown now.
+
+
+	Main Menu = The script uses a while loop to display a menu and executes the function based on user input.
+	---------------------------------------------------------------------------------------------------------
+	the while true loop keeps the script running until the user chooses to exit.
+	the echo commands give a line break and display the menu options.
+	read -p: Prompts the user to choose an option.
+	case $choice in: Handles the users numbered choice.
+
+
+Key points to note :
+--------------------
+Each task is a function which makes the script easy to maintain and extend with more options.
+The script is user friendly, making it ideal for people to perform complex tasks without needing to understand the commands.
+It has many security tools like UFW, Lynis, rkhunter to enhance your systems security.
+Some tools make some changes to the system like UFW, lynis with persistence, while others like service management are temporary.
+
+
+
+
+
+	
